@@ -91,21 +91,24 @@
       return {
         option:'all',
         isPullAway:false,
-        chooseAllOption:true
+        chooseAllOption:true,
+        leftIndex:''
       }
     },
     mounted(){},
     computed:{},
     methods:{
+      // 1、收起左面板
       pullAwayLeft(){
         this.isPullAway = !this.isPullAway;
         // this.$parent.extendLeftOrRight(); 调用父组件的方法
 
       },
+      // 2、移动左form到中间
       moveLeftForm(event){
-        let dom = event.target;
-        console.log(dom.parentNode)
-
+        let dom = event.target.parentNode;
+        this.leftIndex = dom.getAttribute('data-snipid');
+        console.log(this.leftIndex);
       }
     }
   }

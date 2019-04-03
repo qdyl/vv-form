@@ -6,24 +6,22 @@
     <div id="bodyOfPage" class="body-of-page" :class="extendLeftOrRight">
       <div>
         <ul id="contentarea" class="contentarea ui-droppable ui-sortable">
-          <draggable v-model="originFormEles">
+          <draggable v-model="userFormEles">
             <transition-group >
-              <li v-for="(item,index) in originFormEles"
+              <li v-for="(item,index) in userFormEles"
                   :key="item.dataSnipid"
                   v-html="item.formContent"
-                  v-bind:class="hoverClass"
-                  @click="hoverclick(index)">
+                  v-bind:class="{'ui-draggable':cur===index,'ui-dragbox-outlined':cur===index}"
+                  @click="hoverclick(index,$event)">
               </li>
             </transition-group>
           </draggable>
         </ul>
       </div>
     </div>
-
     <!-- 右-->
     <right-panel></right-panel>
   </div>
-
 </template>
 
 <script>
@@ -39,15 +37,11 @@
     },
     data(){
       return{
-        index:'',
+        cur:'',
         dataIndex:'11111',
-        // 鼠标点击时候添加class
-        hoverClass:{
-          'ui-draggable':true,
-          'ui-dragbox-outlined':true
-        },
+        // 1、最原始的form表单控件
         originFormEles:[
-          {dataSnipid:1,formContent:`<section class="ui-draggable" data-snipid="0" v-bind:data-index="dataIndex">
+          {dataSnipid:0,formContent:`<section class="ui-draggable" data-snipid="0" v-bind:data-index="dataIndex">
             <div config="el">
               <div class="form-horizontal clearfix">
                 <h3>什么什么活动报名表</h3>
@@ -62,7 +56,7 @@
             <div class="row-remove"><i class="icon-remove"></i></div>
           </div>
           </section>`},
-          {dataSnipid:2,formContent:`<section class="ui-draggable" data-snipid="1" v-bind:data-index="dataIndex">
+          {dataSnipid:1,formContent:`<section class="ui-draggable" data-snipid="1" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -81,7 +75,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:3,formContent:`<section class="ui-draggable" data-snipid="2" v-bind:data-index="dataIndex">
+          {dataSnipid:2,formContent:`<section class="ui-draggable" data-snipid="2" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -100,7 +94,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:4,formContent:`<section class="ui-draggable " data-snipid="3" v-bind:data-index="dataIndex">
+          {dataSnipid:3,formContent:`<section class="ui-draggable " data-snipid="3" v-bind:data-index="dataIndex">
             <div config="el">
               <div class="form-horizontal">
                 <div class="form-group">
@@ -121,7 +115,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:5,formContent:`<section class="ui-draggable" data-snipid="4" v-bind:data-index="dataIndex">
+          {dataSnipid:4,formContent:`<section class="ui-draggable" data-snipid="4" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -140,7 +134,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:6,formContent:`<section class="ui-draggable" data-snipid="5" v-bind:data-index="dataIndex">
+          {dataSnipid:5,formContent:`<section class="ui-draggable" data-snipid="5" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -162,7 +156,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:7,formContent:`<section class="ui-draggable" data-snipid="6" v-bind:data-index="dataIndex">
+          {dataSnipid:6,formContent:`<section class="ui-draggable" data-snipid="6" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -184,7 +178,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:8,formContent:`<section class="ui-draggable" data-snipid="8" v-bind:data-index="dataIndex">
+          {dataSnipid:7,formContent:`<section class="ui-draggable" data-snipid="8" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -207,7 +201,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:9,formContent:`<section class="ui-draggable" data-snipid="7" v-bind:data-index="dataIndex">
+          {dataSnipid:8,formContent:`<section class="ui-draggable" data-snipid="7" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -228,7 +222,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:10,formContent:`<section class="ui-draggable" data-snipid="9" v-bind:data-index="dataIndex">
+          {dataSnipid:9,formContent:`<section class="ui-draggable" data-snipid="9" v-bind:data-index="dataIndex">
             <div config="el">
               <div class="form-horizontal">
                 <div class="form-group">
@@ -301,7 +295,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:11,formContent:`<section class="ui-draggable" data-snipid="10" v-bind:data-index="dataIndex">
+          {dataSnipid:10,formContent:`<section class="ui-draggable" data-snipid="10" v-bind:data-index="dataIndex">
           <div>
             <div class="form-horizontal">
               <div class="form-group">
@@ -324,7 +318,7 @@
             <div class="row-remove"><i class="icon-remove"></i></div>
           </div>
         </section>`},
-          {dataSnipid:12,formContent:`<section class="ui-draggable" data-snipid="11" v-bind:data-index="dataIndex">
+          {dataSnipid:11,formContent:`<section class="ui-draggable" data-snipid="11" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -351,7 +345,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:13,formContent:`<section class="ui-draggable" data-snipid="12" v-bind:data-index="dataIndex">
+          {dataSnipid:12,formContent:`<section class="ui-draggable" data-snipid="12" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -378,7 +372,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:14,formContent:`<section class="ui-draggable" data-snipid="13" v-bind:data-index="dataIndex">
+          {dataSnipid:13,formContent:`<section class="ui-draggable" data-snipid="13" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -408,7 +402,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:15,formContent:`<section class="ui-draggable" data-snipid="14" v-bind:data-index="dataIndex">
+          {dataSnipid:14,formContent:`<section class="ui-draggable" data-snipid="14" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -435,7 +429,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:16,formContent:`<section class="ui-draggable" data-snipid="15" v-bind:data-index="dataIndex">
+          {dataSnipid:15,formContent:`<section class="ui-draggable" data-snipid="15" v-bind:data-index="dataIndex">
             <div config="el">
               <div class="form-horizontal">
                 <div class="form-group">
@@ -463,7 +457,7 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:17,formContent:`<section class="ui-draggable" data-snipid="16" v-bind:data-index="dataIndex">
+          {dataSnipid:16,formContent:`<section class="ui-draggable" data-snipid="16" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -483,7 +477,7 @@
             </div>
 
           </section>`},
-          {dataSnipid:18,formContent:`<section class="ui-draggable" data-snipid="17" v-bind:data-index="dataIndex">
+          {dataSnipid:17,formContent:`<section class="ui-draggable" data-snipid="17" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -502,6 +496,7 @@
             </div>
           </section>`},
         ],
+        // 2、用户二次修改的form表单控件
         userFormEles:[]
       }
     },
@@ -510,17 +505,35 @@
         // alert(11)
       }
     },
+    created:function(){
+      this.initUserForm();
+    },
     methods:{
-      chooseListItem(){
-
+      // 1、初始化用户form
+      initUserForm(){
+        this.userFormEles = this.originFormEles.slice(0,6)
       },
-      hoverclick(cur){
-        this.index = cur;
-        console.log('this.index',this.index)
+      // 2、点击单个form
+      hoverclick(cur,event){
+        // 添加样式
+        this.cur = cur;
+        console.log('event事件1',event);
+        this.operateForm(event);
+      },
+      // 3、操作form,添加或删除(采用事件委托)
+      operateForm (e){
+        console.log('e事件2',e);
+        let dom = e.target;
+        if(dom.getAttribute('class')==='icon-plus'){
+          this.userFormEles.splice(this.cur,0,this.userFormEles[this.cur]);
+          console.log('添加'+this.cur)
+        }
+        if(dom.getAttribute('class')==='icon-remove'){
+          this.userFormEles.splice(this.cur,1);
+          console.log('删除了')
+        }
       }
-
     }
-
   }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="tool-panel-right" :class="{isPullAwayClass:isPullAway}">
-    <a class="panel-open-btn-right" href="javascript:void(0);">
+    <a class="panel-open-btn-right" href="##;">
       <i class="glyphicon glyphicon-menu-right" @click="pullAwayRight"></i></a>
 
     <dl class="accordionPanel">
@@ -60,7 +60,6 @@
           <div class="form-group checkbox" style="">
             <label><input type="checkbox" value="NotNull" class="input-inline">这是个必填项</label>
           </div>
-
 
         </div>
 
