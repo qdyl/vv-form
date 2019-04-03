@@ -41,7 +41,7 @@
           {dataSnipid:0,formContent:`<section class="ui-draggable" data-snipid="0" v-bind:data-index="dataIndex">
             <div config="el">
               <div class="form-horizontal clearfix">
-                <h3>什么什么活动报名表</h3>
+                <h3>活动报名表</h3>
                 <p class="help-block">请如实填写，如有弄虚作假取消参与资格。</p>
                 <hr>
               </div>
@@ -434,13 +434,13 @@
                   <div class="col-sm-8">
                     <ul class="star-rating" id="rating1">
                       <input type="hidden" name="ih62q5unffff" value="0">
-                      <li>☆☆☆☆☆<a href="http://vuetest.demo.zhuzhilong.cn/formbuilder/formBuilder.html?template=0#" class="star-clear" data-rate="0">×</a></li>
+                      <li>☆☆☆☆☆<a href="#" class="star-clear" data-rate="0">×</a></li>
                       <li class="current-rating" style="width: 0em;">★★★★★</li>
-                      <li><a href="http://vuetest.demo.zhuzhilong.cn/formbuilder/formBuilder.html?template=0#" style="width:5em;" data-rate="5">★★★★★</a></li>
-                      <li><a href="http://vuetest.demo.zhuzhilong.cn/formbuilder/formBuilder.html?template=0#" style="width:4em;" data-rate="4">★★★★</a></li>
-                      <li><a href="http://vuetest.demo.zhuzhilong.cn/formbuilder/formBuilder.html?template=0#" style="width:3em;" data-rate="3">★★★</a></li>
-                      <li><a href="http://vuetest.demo.zhuzhilong.cn/formbuilder/formBuilder.html?template=0#" style="width:2em;" data-rate="2">★★</a></li>
-                      <li><a href="http://vuetest.demo.zhuzhilong.cn/formbuilder/formBuilder.html?template=0#" style="width:1em;" data-rate="1">★</a></li>
+                      <li><a href="#" style="width:5em;" data-rate="5">★★★★★</a></li>
+                      <li><a href="#" style="width:4em;" data-rate="4">★★★★</a></li>
+                      <li><a href="#" style="width:3em;" data-rate="3">★★★</a></li>
+                      <li><a href="#" style="width:2em;" data-rate="2">★★</a></li>
+                      <li><a href="#" style="width:1em;" data-rate="1">★</a></li>
                     </ul>
                     <p class="help-block">零星视为无效评级</p>
                   </div>
@@ -524,6 +524,7 @@
       },
       // 3、操作form,添加或删除(采用事件委托)
       operateForm (e){
+        //console.log('e事件2',e);
         let dom = e.target;
         // 3.1、添加form
         if(dom.getAttribute('class')==='icon-plus'){
@@ -538,7 +539,8 @@
       },
       // 4、子组件触发的父组件的事件：向父组件中拖入form
       receive(leftIndex,futureIndex){
-        this.userFormEles.splice(leftIndex,0,this.originFormEles[futureIndex])
+         //alert(leftIndex,futureIndex);
+        this.userFormEles.splice(futureIndex,0,this.originFormEles[leftIndex])
       }
     }
   }
