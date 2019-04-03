@@ -47,6 +47,8 @@
 [class*=" icon-"]:before {
   text-decoration: inherit;
   display: inline-block;
+  width: 100%;
+  height: 100%;
   speak: none;
 }
 /* makes the font 33% larger relative to the icon container */
@@ -160,9 +162,9 @@ a [class*=" icon-"] {
 /* Bootstrap 2.0 sprites.less reset */
 [class^="icon-"],
 [class*=" icon-"] {
-  display: inline;
-  width: auto;
-  height: auto;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
   line-height: inherit;
   vertical-align: baseline;
   background-image: none;

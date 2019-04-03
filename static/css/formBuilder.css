@@ -57,6 +57,9 @@ body ::-webkit-resizer {
 	overflow: hidden;
     font-size: 14px;
 }
+.contentarea li{
+  cursor: move;
+}
 .tool-panel-left, .tool-panel-right {
 	z-index: 10001;
 	position: fixed;
@@ -115,7 +118,8 @@ body ::-webkit-resizer {
 #divSnippetList {
 	overflow-y: auto;
 	overflow-x: hidden;
-	height: 80%;
+	height: 618px;
+  /*height: 80%;*/
 }
 #divSnippetList li img {
 	max-width: 194px;

@@ -6,8 +6,8 @@
     </a>
     <dl class="accordionPanel">
       <dt class="accordionPanelTab"><b>部件库</b></dt>
+      <!-- 部件库 -->
       <dd class="accordionPanelContent">
-        <!-- 部件库 -->
         <div id="snippetPicker" avalonctrl="snippetPicker">
           <!-- 下拉-->
           <select id="selSnips" class="categories" v-model="option" >
@@ -19,7 +19,7 @@
           </select>
           <p>'option的值':{{option}}</p>
           <!-- list-->
-          <ul id="divSnippetList" style="height: 618px;">
+          <ul id="divSnippetList" @click="moveLeftForm($event)">
             <li data-repeat-rendered="onRepeatRendered" v-show="(option === '输入框'|| option==='all')" data-snipid="0" data-snipcat=",all," class="ui-draggable">
               <img alt="" src="../assets/images/fl1.png">
             </li>
@@ -90,14 +90,6 @@
     data() {
       return {
         option:'all',
-        options:{
-          leftSelected: 'all',
-          all: 'all',
-          input: '输入框',
-          list: '列表选择',
-          radio_check: '单选、多选',
-          file_button: '文件、按钮',
-        },
         isPullAway:false,
         chooseAllOption:true
       }
@@ -105,22 +97,14 @@
     mounted(){},
     computed:{},
     methods:{
-      // 在下拉框选择
-      changeSelect(option) {
-        this.options.leftSelected = option;
-        if(this.options.leftSelected === this.options.all){
-          this.chooseAllOption = true;
-        }else{
-          this.chooseAllOption = false;
-        }
-      },
-      // 收起左边
       pullAwayLeft(){
         this.isPullAway = !this.isPullAway;
         // this.$parent.extendLeftOrRight(); 调用父组件的方法
 
       },
-      select(){
+      moveLeftForm(event){
+        let dom = event.target;
+        console.log(dom.parentNode)
 
       }
     }
