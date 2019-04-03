@@ -8,7 +8,6 @@
         <ul id="contentarea" class="contentarea ui-droppable ui-sortable">
           <draggable v-model="userFormEles" :options="mainOptions">
               <li v-for="(item,index) in userFormEles"
-                  :key="item.dataSnipid"
                   v-html="item.formContent"
                   v-bind:class="{'ui-draggable':cur===index,'ui-dragbox-outlined':cur===index}"
                   @click="hoverclick(index,$event)">
@@ -520,7 +519,7 @@
       hoverclick(cur,event){
         // 添加样式
         this.cur = cur;
-        console.log('event事件1',event);
+        //console.log('event事件1',event);
         this.operateForm(event);
       },
       // 3、操作form,添加或删除(采用事件委托)
@@ -529,11 +528,11 @@
         let dom = e.target;
         if(dom.getAttribute('class')==='icon-plus'){
           this.userFormEles.splice(this.cur,0,this.userFormEles[this.cur]);
-          console.log('添加'+this.cur)
+          // console.log('添加'+this.cur)
         }
         if(dom.getAttribute('class')==='icon-remove'){
           this.userFormEles.splice(this.cur,1);
-          console.log('删除了')
+          // console.log('删除了')
         }
       }
     }
