@@ -7,8 +7,13 @@
       <div>
         <ul id="contentarea" class="contentarea ui-droppable ui-sortable">
           <draggable v-model="originFormEles">
-            <transition-group>
-              <li v-for="item in originFormEles" :key="item.dataSnipid" v-html="item.formContent"></li>
+            <transition-group >
+              <li v-for="(item,index) in originFormEles"
+                  :key="item.dataSnipid"
+                  v-html="item.formContent"
+                  v-bind:class="hoverClass"
+                  @click="hoverclick(index)">
+              </li>
             </transition-group>
           </draggable>
         </ul>
@@ -34,10 +39,15 @@
     },
     data(){
       return{
+        index:'',
         dataIndex:'11111',
-        array:[1,2,3,4,5,6],
+        // 鼠标点击时候添加class
+        hoverClass:{
+          'ui-draggable':true,
+          'ui-dragbox-outlined':true
+        },
         originFormEles:[
-          {dataSnipid:1,formContent:`<li class="ui-draggable" data-snipid="0" v-bind:data-index="dataIndex">
+          {dataSnipid:1,formContent:`<section class="ui-draggable" data-snipid="0" v-bind:data-index="dataIndex">
             <div config="el">
               <div class="form-horizontal clearfix">
                 <h3>什么什么活动报名表</h3>
@@ -51,8 +61,8 @@
             <div class="row-copy"><i class="icon-plus"></i></div>
             <div class="row-remove"><i class="icon-remove"></i></div>
           </div>
-          </li>`},
-          {dataSnipid:2,formContent:`<li class="ui-draggable" data-snipid="1" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:2,formContent:`<section class="ui-draggable" data-snipid="1" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -70,8 +80,8 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:3,formContent:`<li class="ui-draggable" data-snipid="2" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:3,formContent:`<section class="ui-draggable" data-snipid="2" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -89,8 +99,8 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:4,formContent:`<li class="ui-draggable ui-dragbox-outlined" data-snipid="3" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:4,formContent:`<section class="ui-draggable " data-snipid="3" v-bind:data-index="dataIndex">
             <div config="el">
               <div class="form-horizontal">
                 <div class="form-group">
@@ -105,13 +115,13 @@
               </div>
             </div>
             <div class="row-mask"></div>
-            <div class="row-tool" style="display: block;">
+            <div class="row-tool" style="display: none;">
               <div class="row-handle"><i class="icon-move"></i></div>
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:5,formContent:`<li class="ui-draggable" data-snipid="4" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:5,formContent:`<section class="ui-draggable" data-snipid="4" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -129,8 +139,8 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:6,formContent:`<li class="ui-draggable" data-snipid="5" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:6,formContent:`<section class="ui-draggable" data-snipid="5" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -151,8 +161,8 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:7,formContent:`<li class="ui-draggable" data-snipid="6" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:7,formContent:`<section class="ui-draggable" data-snipid="6" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -173,8 +183,8 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:8,formContent:`<li class="ui-draggable" data-snipid="8" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:8,formContent:`<section class="ui-draggable" data-snipid="8" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -196,8 +206,8 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:9,formContent:`<li class="ui-draggable" data-snipid="7" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:9,formContent:`<section class="ui-draggable" data-snipid="7" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -217,8 +227,8 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:10,formContent:`<li class="ui-draggable" data-snipid="9" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:10,formContent:`<section class="ui-draggable" data-snipid="9" v-bind:data-index="dataIndex">
             <div config="el">
               <div class="form-horizontal">
                 <div class="form-group">
@@ -290,8 +300,8 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:11,formContent:`<li class="ui-draggable" data-snipid="10" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:11,formContent:`<section class="ui-draggable" data-snipid="10" v-bind:data-index="dataIndex">
           <div>
             <div class="form-horizontal">
               <div class="form-group">
@@ -313,8 +323,8 @@
             <div class="row-copy"><i class="icon-plus"></i></div>
             <div class="row-remove"><i class="icon-remove"></i></div>
           </div>
-        </li>`},
-          {dataSnipid:12,formContent:`<li class="ui-draggable" data-snipid="11" v-bind:data-index="dataIndex">
+        </section>`},
+          {dataSnipid:12,formContent:`<section class="ui-draggable" data-snipid="11" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -340,8 +350,8 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:13,formContent:`<li class="ui-draggable" data-snipid="12" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:13,formContent:`<section class="ui-draggable" data-snipid="12" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -367,8 +377,8 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:14,formContent:`<li class="ui-draggable" data-snipid="13" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:14,formContent:`<section class="ui-draggable" data-snipid="13" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -397,8 +407,8 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:15,formContent:`<li class="ui-draggable" data-snipid="14" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:15,formContent:`<section class="ui-draggable" data-snipid="14" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -424,8 +434,8 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:16,formContent:`<li class="ui-draggable" data-snipid="15" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:16,formContent:`<section class="ui-draggable" data-snipid="15" v-bind:data-index="dataIndex">
             <div config="el">
               <div class="form-horizontal">
                 <div class="form-group">
@@ -452,8 +462,8 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-          {dataSnipid:17,formContent:`<li class="ui-draggable" data-snipid="16" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:17,formContent:`<section class="ui-draggable" data-snipid="16" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -472,8 +482,8 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
 
-          </li>`},
-          {dataSnipid:18,formContent:`<li class="ui-draggable" data-snipid="17" v-bind:data-index="dataIndex">
+          </section>`},
+          {dataSnipid:18,formContent:`<section class="ui-draggable" data-snipid="17" v-bind:data-index="dataIndex">
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
@@ -490,21 +500,23 @@
               <div class="row-copy"><i class="icon-plus"></i></div>
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
-          </li>`},
-        ]
-
-
+          </section>`},
+        ],
+        userFormEles:[]
       }
     },
     computed:{
       extendLeftOrRight(){
         // alert(11)
-
       }
     },
     methods:{
       chooseListItem(){
 
+      },
+      hoverclick(cur){
+        this.index = cur;
+        console.log('this.index',this.index)
       }
 
     }
