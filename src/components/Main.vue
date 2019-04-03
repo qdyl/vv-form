@@ -6,7 +6,7 @@
     <div id="bodyOfPage" class="body-of-page" :class="extendLeftOrRight">
       <div>
         <ul id="contentarea" class="contentarea ui-droppable ui-sortable">
-          <draggable v-model="userFormEles">
+          <draggable v-model="userFormEles" :options="mainOptions">
             <transition-group >
               <li v-for="(item,index) in userFormEles"
                   :key="item.dataSnipid"
@@ -497,7 +497,12 @@
           </section>`},
         ],
         // 2、用户二次修改的form表单控件
-        userFormEles:[]
+        userFormEles:[],
+        // 3、vue.draggable配置的参数
+        mainOptions:{
+          animation:300,
+          group:'forms'
+        }
       }
     },
     computed:{

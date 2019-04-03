@@ -49,63 +49,7 @@
         isPullAway:false,
         chooseAllOption:true,
         leftIndex:'',
-        leftForms:[
-          {id:0,leftCont:` <li v-show="(option === '输入框'|| option==='all')" data-snipid="0" data-snipcat=",all," class="ui-draggable">
-              <img alt="" src="../../static/images/fl1.png">
-            </li>`},
-          {id:1,leftCont:`<li v-show="(option === '输入框'|| option==='all')" data-snipid="1" data-snipcat=",输入框," class="ui-draggable">
-              <img alt="" src="../../static/images/ft1.png">
-            </li>`},
-          {id:2,leftCont:`<li v-show="(option === '输入框'|| option==='all')" data-snipid="2" data-snipcat=",输入框," class="ui-draggable">
-              <img alt="" src="../../static/images/ft8.png">
-            </li>`},
-          {id: 3,leftCont:`<li v-show="(option === '输入框'|| option==='all')" data-snipid="3" data-snipcat=",输入框," class="ui-draggable">
-              <img alt="" src="../../static/images/ft9.png">
-            </li>`},
-          {id:4,leftCont:`<li v-show="(option === '输入框'|| option==='all')" data-snipid="4" data-snipcat=",输入框," class="ui-draggable">
-              <img alt="" src="../../static/images/ft10.png">
-            </li>`},
-          {id:5,leftCont:`<li v-show="(option === '输入框'|| option==='all')"  data-snipid="5" data-snipcat=",输入框," class="ui-draggable">
-              <img alt="" src="../../static/images/ft3.png">
-            </li>`},
-          {id:6,leftCont:`<li v-show="(option === '输入框'|| option==='all')" data-snipid="6" data-snipcat=",输入框," class="ui-draggable">
-              <img alt="" src="../../static/images/ft4.png">
-            </li>`},
-          {id:7,leftCont:`<li v-show="(option === '输入框'|| option==='all')" data-snipid="7" data-snipcat=",输入框," class="ui-draggable">
-              <img alt="" src="../../static/images/ft7.png">
-            </li>`},
-          {id:8,leftCont:`<li v-show="(option === '输入框'|| option==='all')" data-snipid="8" data-snipcat=",列表选择," class="ui-draggable">
-              <img alt="" src="../../static/images/fs1.png">
-            </li>`},
-          {id:9,leftCont:`<li v-show="(option === '列表选择'|| option==='all')" data-snipid="9" data-snipcat=",列表选择," class="ui-draggable">
-              <img alt="" src="../../static/images/fs3.png">
-            </li>`},
-          {id:10,leftCont:`<li v-show="(option === '列表选择'|| option==='all')" data-snipid="10" data-snipcat=",列表选择," class="ui-draggable">
-              <img alt="" src="../../static/images/fs2.png">
-            </li>`},
-          {id:11,leftCont:`<li v-show="(option  === '单选、多选'|| option==='all' )" data-snipid="11" data-snipcat=",单选、多选," class="ui-draggable">
-              <img alt="" src="../../static/images/fc1.png">
-            </li>`},
-          {id:12,leftCont:`<li v-show="(option  === '单选、多选'|| option==='all' )" data-snipid="12" data-snipcat=",单选、多选," class="ui-draggable">
-              <img alt="" src="../../static/images/fc2.png">
-            </li>`},
-          {id:13,leftCont:`<li v-show="(option  === '单选、多选'|| option==='all')" data-snipid="13" data-snipcat=",单选、多选," class="ui-draggable">
-              <img alt="" src="../../static/images/fc3.png">
-            </li>`},
-          {id:14,leftCont:`<li v-show="(option  === '单选、多选'|| option==='all' )" data-snipid="14" data-snipcat=",单选、多选," class="ui-draggable">
-              <img alt="" src="../../static/images/fc4.png">
-            </li>`},
-          {id:15,leftCont:`<li v-show="(option  === '单选、多选'|| option==='all')" data-snipid="15" data-snipcat=",单选、多选," class="ui-draggable">
-              <img alt="" src="../../static/images/fc5.png">
-            </li>`},
-          {id:16,leftCont:`<li v-show="(option === '文件、按钮'|| option==='all')" data-snipid="16" data-snipcat=",文件、按钮," class="ui-draggable">
-              <img alt="" src="../../static/images/ff1.png">
-            </li>`},
-          {id:17,leftCont:`<li v-show="(option === '文件、按钮'|| option==='all')" data-snipid="17" data-snipcat=",文件、按钮," class="ui-draggable">
-              <img alt="" src="../../static/images/fb1.png">
-            </li>`}
-        ],
-        // 左面板数据
+        // 1、左面板数据
         secLeftForms:[
           {'data_id':0,
             'src':'../../static/images/fl1.png',
@@ -181,12 +125,15 @@
           },
 
         ],
-        // vue.draggble配置信息
+        // 2、vue.draggble配置信息
         comOption:{
-          sort:true,
+          sort:false,
           clone:true,
-          group:'leftArray',
+          group:'forms',
           animation:300,
+          // 2.1、落入时，鼠标样式变为可以落入
+          forceFallback:true,
+          fallbackClass:'draggingStyle'
         }
       }
     },

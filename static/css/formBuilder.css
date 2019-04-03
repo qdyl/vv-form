@@ -60,7 +60,8 @@ body ::-webkit-resizer {
 .contentarea li{
   margin-bottom: 6px;
   cursor: move;
-  background: #f3f3f3;
+/*  background: #f3f3f3;*/
+  background: #fbf8f8;
 }
 .tool-panel-left, .tool-panel-right {
 	z-index: 10001;
