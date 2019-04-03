@@ -58,7 +58,9 @@ body ::-webkit-resizer {
     font-size: 14px;
 }
 .contentarea li{
+  margin-bottom: 6px;
   cursor: move;
+  background: #f3f3f3;
 }
 .tool-panel-left, .tool-panel-right {
 	z-index: 10001;
