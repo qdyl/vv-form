@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 左-->
-    <left-panel></left-panel>
+    <left-panel @childdrag="receive"></left-panel>
     <!-- 中2-->
     <div id="bodyOfPage" class="body-of-page" :class="extendLeftOrRight">
       <div>
@@ -524,16 +524,23 @@
       },
       // 3、操作form,添加或删除(采用事件委托)
       operateForm (e){
-        console.log('e事件2',e);
+        //console.log('e事件2',e);
         let dom = e.target;
+        // 3.1、添加form
         if(dom.getAttribute('class')==='icon-plus'){
           this.userFormEles.splice(this.cur,0,this.userFormEles[this.cur]);
           // console.log('添加'+this.cur)
         }
+        // 3.2、删除form
         if(dom.getAttribute('class')==='icon-remove'){
           this.userFormEles.splice(this.cur,1);
           // console.log('删除了')
         }
+      },
+      // 4、子组件触发的父组件的事件：向父组件中拖入form
+      receive(leftIndex,futureIndex){
+         // alert(leftIndex,futureIndex);
+        this.userFormEles.splice(leftIndex,0,this.originFormEles[futureIndex])
       }
     }
   }
