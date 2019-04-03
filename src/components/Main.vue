@@ -7,14 +7,12 @@
       <div>
         <ul id="contentarea" class="contentarea ui-droppable ui-sortable">
           <draggable v-model="userFormEles" :options="mainOptions">
-            <transition-group >
               <li v-for="(item,index) in userFormEles"
                   :key="item.dataSnipid"
                   v-html="item.formContent"
                   v-bind:class="{'ui-draggable':cur===index,'ui-dragbox-outlined':cur===index}"
                   @click="hoverclick(index,$event)">
               </li>
-            </transition-group>
           </draggable>
         </ul>
       </div>

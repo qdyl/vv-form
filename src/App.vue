@@ -28,13 +28,13 @@ export default {
   }
   @font-face {
     font-family: 'FontAwesome';
-    src: url('../src/assets/fonts/fontawesome-webfont.woff?v=3.2.1') format('woff');
+    src: url('../static/fonts/fontawesome-webfont.woff?v=3.2.1') format('woff');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'Glyphicons Halflings';
-    src: url('../src/assets/fonts/glyphicons-halflings-regular.eot');
-    src: url('../src/assets/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../src/assets/fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../src/assets/fonts/glyphicons-halflings-regular.woff') format('woff'), url('../src/assets/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+    src: url('../static/fonts/glyphicons-halflings-regular.eot');
+    src: url('../static/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../static/fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../static/fonts/glyphicons-halflings-regular.woff') format('woff'), url('../static/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
   }
 </style>

@@ -20,13 +20,13 @@
           <p>'option的值':{{option}}</p>
           <!-- list-->
           <ul id="divSnippetList">
-            <draggable v-model="leftForms" :options="comOption">
+            <draggable v-model="secLeftForms" :options="leftOption">
                 <li v-for="item in secLeftForms"
                     class="ui-draggable"
                     :key="item.data_id"
                     :data_id="item.data_id"
                     @click="moveLeftForm"
-                    :aaa="item.type"
+                    @onRemove="_onRemove"
                     v-show="(option===item.type || option==='all')">
                   <img :src="item.src" alt="" >
                 </li>
@@ -126,7 +126,7 @@
 
         ],
         // 2、vue.draggble配置信息
-        comOption:{
+        leftOption:{
           sort:false,
           clone:true,
           group:'forms',
@@ -151,6 +151,11 @@
         let dom = event.target.parentNode;
         this.leftIndex = dom.getAttribute('data-snipid');
         console.log(this.leftIndex);
+      },
+      // 3、移动到另一个列表的回调
+      _onRemove(){
+        console.log('移动到另一个单元')
+
       }
     }
   }
