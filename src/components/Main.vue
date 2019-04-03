@@ -6,11 +6,9 @@
     <div id="bodyOfPage" class="body-of-page" :class="extendLeftOrRight">
       <div>
         <ul id="contentarea" class="contentarea ui-droppable ui-sortable">
-          <draggable v-model="formbuilders">
+          <draggable v-model="originFormEles">
             <transition-group>
-              <li v-for="item in formbuilders" :key="item.dataSnipid">
-                <div v-html="item.formContent"></div>
-              </li>
+              <li v-for="item in originFormEles" :key="item.dataSnipid" v-html="item.formContent"></li>
             </transition-group>
           </draggable>
         </ul>
@@ -38,7 +36,7 @@
       return{
         dataIndex:'11111',
         array:[1,2,3,4,5,6],
-        formbuilders:[
+        originFormEles:[
           {dataSnipid:1,formContent:`<li class="ui-draggable" data-snipid="0" v-bind:data-index="dataIndex">
             <div config="el">
               <div class="form-horizontal clearfix">
