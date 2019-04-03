@@ -22,9 +22,6 @@
           <ul id="divSnippetList">
             <draggable
               v-model="secLeftForms"
-              @start="start"
-              @change="change"
-              :move="move"
               @end="end"
               :options="leftOption">
                 <li v-for="(item,index) in secLeftForms" class="ui-draggable"
@@ -161,30 +158,13 @@
       _onRemove(){
         console.log('移动到另一个单元')
       },
-      //
-      start(){},
-      change(){},
-      // 4、移动过程中的函数-测试(no)
-      move(evt) {
-      /*  this.leftIndex = evt.draggedContext.index; // 需要插入的form
-        this.futureIndex = evt.draggedContext.futureIndex; // 要插入的位置
-        this.$emit('childdrag',this.leftIndex,this.futureIndex);
-        // 以下是测试
-        console.log('拖拽元素的指针',evt.draggedContext.index);
-        console.log('拖拽数据本身',evt.draggedContext.element);
-        console.log('拖拽后的index',evt.draggedContext.futureIndex);
-        console.log('拖入区域的上下文-拖拽目标元素的index',evt.relatedContext.index);
-        console.log('目标数据本身',evt.relatedContext.element);
-        console.log('拖入的列表',evt.relatedContext.list);
-        console.log('目标组件',evt.relatedContext.component);*/
-      },
-      // 5、移动之后的函数
+      // 4、移动之后的函数
       end(evt){
         this.leftIndex = evt.oldIndex;
         this.futureIndex = evt.newIndex;
         this.$emit('childdrag',this.leftIndex,this.futureIndex);
         // 以下是测试
-      /*  console.log('end事件-evt.item',evt.item);
+         /*  console.log('end事件-evt.item',evt.item);
         console.log('end事件-evt.to',evt.to);
         console.log('end事件-evt.from',evt.from);
         console.log('end事件-evt.oldIndex',evt.oldIndex);

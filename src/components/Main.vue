@@ -524,7 +524,6 @@
       },
       // 3、操作form,添加或删除(采用事件委托)
       operateForm (e){
-        //console.log('e事件2',e);
         let dom = e.target;
         // 3.1、添加form
         if(dom.getAttribute('class')==='icon-plus'){
@@ -539,7 +538,6 @@
       },
       // 4、子组件触发的父组件的事件：向父组件中拖入form
       receive(leftIndex,futureIndex){
-         // alert(leftIndex,futureIndex);
         this.userFormEles.splice(leftIndex,0,this.originFormEles[futureIndex])
       }
     }
