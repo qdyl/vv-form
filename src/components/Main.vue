@@ -17,7 +17,6 @@
       </div>
     </div>
     <!-- 右-->
-  <!--  <right-panel></right-panel>-->
     <div class="tool-panel-right" :class="{isPullAwayClass:isPullAway}">
       <a class="panel-open-btn-right" href="##;">
         <i class="glyphicon glyphicon-menu-right" @click="pullAwayRight"></i></a>
@@ -93,12 +92,10 @@
 <script>
   import Draggable from 'vuedraggable'
   import LeftPanel from './LeftPanel'
- /* import RightPanel from './RightPanel'*/
   export default {
     name: "main",
     components:{
       LeftPanel,
-/*      RightPanel,*/
       Draggable
     },
     data(){
