@@ -86,11 +86,11 @@
           },
 
           {'data_id':7,
-            'src':'../static/images/fs1.png',
+            'src':'../static/images/ft7.png',
             'type':'输入框'
           },
           {'data_id':8,
-            'src':'../static/images/ft7.png',
+            'src':'../static/images/fs1.png',
             'type':'输入框'
           },
           {'data_id':9,

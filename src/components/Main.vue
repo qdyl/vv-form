@@ -25,37 +25,39 @@
         <dt class="accordionPanelTab"><b>属性</b></dt>
         <dd class="accordionPanelContent">
           <!-- 属性 -->
-          <div id="fieldEditors" avalonctrl="fieldEditors" style="height: 658px;">
-
-            <div class="form-group" style="">
+          <div id="fieldEditors" avalonctrl="fieldEditors" >
+            <!-- 第零：0、1、2、3、4、5、6、7、8、9、10、11、12、13、14、15、16、17-->
+            <div class="form-group" v-show="curIndex!==''" style="">
               <label class="control-label">标题: </label>
               <input type="text" class="form-control input-sm">
             </div>
-
-            <div class="form-group" style="display: none;">
-              <label class="control-label">: </label>
+            <!-- 第一：5、6-->
+            <div class="form-group" v-show="curIndex===5||curIndex===6">
+              <label class="control-label">附加文字: </label>
               <input type="text" class="form-control input-sm">
             </div>
-
-            <div class="form-group" style="display: none;">
-              <label class="control-label">: </label>
+            <!-- 第二：1、5、6、7-->
+            <div class="form-group" v-show="curIndex===1||curIndex===5||curIndex===6||curIndex===7">
+              <label class="control-label">描述文字: </label>
               <input type="text" class="form-control input-sm">
             </div>
-
-            <div class="form-group" style="">
+            <!-- 第三：0、1、2、3、4、5、6、7、9、15、16-->
+            <div class="form-group" v-show="curIndex!=='' && curIndex!==8 && curIndex!==10 && curIndex!==11 && curIndex!==12 && curIndex!==13 && curIndex!==14 && curIndex!==17">
               <label class="control-label">填写帮助: </label>
               <input type="text" class="form-control input-sm">
             </div>
-
-            <div class="form-group" style="display: none;">
-              <label class="control-label">: </label>
+            <!-- 第四：8、10、11、12、13、14-->
+            <div class="form-group" v-show="curIndex===8||curIndex===10||curIndex===11||curIndex===12||curIndex===13||curIndex===14">
+              <label class="control-label" v-show="curIndex===8||curIndex===10">列表项: </label>
+              <label class="control-label" v-show="curIndex===11||curIndex===13">多选项: </label>
+              <label class="control-label" v-show="curIndex===12||curIndex===14">单选项: </label>
               <textarea class="form-control" style="min-height: 100px"></textarea>
             </div>
-
-            <div class="form-group" style="display: none;">
-              <label class="control-label">: </label>
+            <!-- 第五：17-->
+            <div class="form-group" v-show="curIndex===17">
+              <label class="control-label">按钮文字: </label>
               <input class="form-control input-sm" type="text">
-              <label class="control-label">: </label>
+              <label class="control-label">风格: </label>
               <select class="form-control input-sm">
                 <option value="btn-default">Default</option>
                 <option value="btn-primary">Primary</option>
@@ -65,17 +67,17 @@
                 <option value="btn-danger">Danger</option>
               </select>
             </div>
-
-            <div class="form-group" style="display: none;">
-              <label class="control-label">: </label>
+            <!-- 第六：7、-->
+            <div class="form-group" v-show="this.curIndex===7">
+              <label class="control-label">最大长度: </label>
               <input type="text" class="form-control input-sm" verify="Int">
             </div>
-
+            <!-- 第七：-->
             <div class="form-group checkbox" style="display: none;">
               <label><input type="checkbox" class="input-inline">: </label>
             </div>
-
-            <div class="form-group checkbox" style="">
+            <!-- 第八：1、2、3、4、5、6、7-->     <!--9、10、11、12、13、14、15、16、17-->
+            <div class="form-group checkbox"   v-show="curIndex===1||curIndex===2||curIndex===3||curIndex===4||curIndex===5||curIndex===6||curIndex===7">
               <label><input type="checkbox" value="NotNull" class="input-inline">这是个必填项</label>
             </div>
 
@@ -102,6 +104,7 @@
       return{
         isPullAway:false,
         cur:'',
+        curIndex:'',
         dataIndex:'11111',
         // 0、最原始的form表单数据--不能修改
         originFormData:[
@@ -334,14 +337,12 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[7].title}</label>
+                  <label class="col-sm-3 control-label">${this.originFormData[8].title}</label>
                   <div class="col-sm-8">
-                    <select class="form-control" name="jqrnfa1tjanj">
-                      <option value="Enter">Enter</option>
-                      <option value="Your">Your</option>
-                      <option value="Options">Options</option>
-                      <option value="Here!">Here!</option>
-                    </select>
+                    <div class="textarea">
+                      <textarea rows="4" class="form-control" name="jqrnfa1taiuf" maxlength="140" verify="Length&lt;=140" placeholder="placeholder"></textarea>
+                      <p class="help-block">${this.originFormData[8].info}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -357,12 +358,14 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[8].title}</label>
+                  <label class="col-sm-3 control-label">${this.originFormData[7].title}</label>
                   <div class="col-sm-8">
-                    <div class="textarea">
-                      <textarea rows="4" class="form-control" name="jqrnfa1taiuf" maxlength="140" verify="Length&lt;=140" placeholder="placeholder"></textarea>
-                      <p class="help-block">${this.originFormData[8].info}</p>
-                    </div>
+                    <select class="form-control" name="jqrnfa1tjanj">
+                      <option value="Enter">Enter</option>
+                      <option value="Your">Your</option>
+                      <option value="Options">Options</option>
+                      <option value="Here!">Here!</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -670,9 +673,13 @@
       },
       // 2、点击单个form
       hoverclick(cur,event){
+        let eledom   = event.target;
+        this.curIndex = eledom.parentNode.getAttribute('data-snipid');
+        //console.log('this.curIndex',this.curIndex);
         // 添加样式
         this.cur = cur;
         //console.log('event事件1',event);
+        //console.log('cur的值',this.cur);
         this.operateForm(event);
       },
       // 3、操作form,添加或删除(采用事件委托)
