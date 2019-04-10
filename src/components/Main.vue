@@ -29,36 +29,42 @@
             <!-- 第零：0、1、2、3、4、5、6、7、8、9、10、11、12、13、14、15、16、17-->
             <div class="form-group" v-show="curIndex!==''" style="">
               <label class="control-label">标题: </label>
-              <input type="text" class="form-control input-sm">
+              <input id="right-form-tit1" type="text" class="form-control input-sm" @keyup="right_form_tit1($event)">
             </div>
             <!-- 第一：5、6-->
             <div class="form-group" v-show="curIndex===5||curIndex===6">
               <label class="control-label">附加文字: </label>
-              <input type="text" class="form-control input-sm">
+              <input id="extra-word4" type="text" class="form-control input-sm" @keyup="right_extra_word4($event)">
             </div>
             <!-- 第二：1、5、6、7-->
             <div class="form-group" v-show="curIndex===1||curIndex===5||curIndex===6||curIndex===7">
               <label class="control-label">描述文字: </label>
-              <input type="text" class="form-control input-sm">
+              <input id="right-form-description1" type="text" class="form-control input-sm" @keyup="right_form_description2($event)">
             </div>
             <!-- 第三：0、1、2、3、4、5、6、7、9、15、16-->
-            <div class="form-group" v-show="curIndex!=='' && curIndex!==8 && curIndex!==10 && curIndex!==11 && curIndex!==12 && curIndex!==13 && curIndex!==14 && curIndex!==17">
+            <div class="form-group" v-show="curIndex===0||curIndex===1||curIndex===2||curIndex===3||curIndex===4||curIndex===5||curIndex===6||curIndex===7||curIndex===9||curIndex===15||curIndex===16">  <!--v-show="curIndex!=='' && curIndex!==8 && curIndex!==10 && curIndex!==11 && curIndex!==12 && curIndex!==13 && curIndex!==14 && curIndex!==17"-->
               <label class="control-label">填写帮助: </label>
-              <input type="text" class="form-control input-sm">
+              <input id="right-form-info3" type="text" class="form-control input-sm" @keyup="right_form_info3($event)">
             </div>
             <!-- 第四：8、10、11、12、13、14-->
             <div class="form-group" v-show="curIndex===8||curIndex===10||curIndex===11||curIndex===12||curIndex===13||curIndex===14">
               <label class="control-label" v-show="curIndex===8||curIndex===10">列表项: </label>
               <label class="control-label" v-show="curIndex===11||curIndex===13">多选项: </label>
               <label class="control-label" v-show="curIndex===12||curIndex===14">单选项: </label>
-              <textarea class="form-control" style="min-height: 100px"></textarea>
+              <textarea id="right-form-list8" v-show="curIndex===8" class="form-control" style="min-height: 100px" @keyup="right_form_list8($event)"></textarea>
+              <textarea id="right-form-list10" v-show="curIndex===10" class="form-control" style="min-height: 100px" @keyup="right_form_list8($event)"></textarea>
+              <textarea id="right-form-list11" v-show="curIndex===11" class="form-control" style="min-height: 100px" @keyup="right_form_list11($event)"></textarea>
+              <textarea id="right-form-list12" v-show="curIndex===12" class="form-control" style="min-height: 100px" @keyup="right_form_list12($event)"></textarea>
+              <textarea id="right-form-list13" v-show="curIndex===13" class="form-control" style="min-height: 100px" @keyup="right_form_list13($event)"></textarea>
+              <textarea id="right-form-list14" v-show="curIndex===14" class="form-control" style="min-height: 100px" @keyup="right_form_list14($event)"></textarea>
+
             </div>
             <!-- 第五：17-->
             <div class="form-group" v-show="curIndex===17">
               <label class="control-label">按钮文字: </label>
-              <input class="form-control input-sm" type="text">
+              <input class="form-control input-sm" id="btn-style" type="text" @keyup="btn_style($event)">
               <label class="control-label">风格: </label>
-              <select class="form-control input-sm">
+              <select class="form-control input-sm" @change="change_btn_style($event)">
                 <option value="btn-default">Default</option>
                 <option value="btn-primary">Primary</option>
                 <option value="btn-info">Info</option>
@@ -68,7 +74,7 @@
               </select>
             </div>
             <!-- 第六：7、-->
-            <div class="form-group" v-show="this.curIndex===7">
+            <div class="form-group" v-show="curIndex===7">
               <label class="control-label">最大长度: </label>
               <input type="text" class="form-control input-sm" verify="Int">
             </div>
@@ -199,7 +205,7 @@
           {dataSnipid:0,formContent:`<section class="ui-draggable" data-snipid="0" v-bind:data-index="dataIndex">
             <div config="el">
               <div class="form-horizontal clearfix">
-                <h3>${this.originFormData[0].title}</h3>
+                <h3 class="form-tit">${this.originFormData[0].title}</h3>
                 <p class="help-block">${this.originFormData[0].info}</p>
                 <hr>
               </div>
@@ -215,9 +221,9 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[1].title}</label>
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[1].title}</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name="jqrnfa1ogplx" placeholder="placeholder" verify="">
+                    <input type="text" class="form-control description" name="jqrnfa1ogplx" placeholder="placeholder" verify="">
                     <p class="help-block">${this.originFormData[0].info}</p>
                   </div>
                 </div>
@@ -234,7 +240,7 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[2].title}</label>
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[2].title}</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" ztype="number" name="jrizdgvzl5eg" verify="Int">
                     <p class="help-block">${this.originFormData[2].info}</p>
@@ -249,11 +255,11 @@
               <div class="row-remove"><i class="icon-remove"></i></div>
             </div>
           </section>`},
-          {dataSnipid:3,formContent:`<section class="ui-draggable " data-snipid="3" v-bind:data-index="dataIndex">
+          {dataSnipid:3,formContent:`<section class="ui-draggable" data-snipid="3" v-bind:data-index="dataIndex">
             <div config="el">
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[3].title}</label>
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[3].title}</label>
                   <div class="col-sm-8">
                     <div class="input-group">
                       <input type="text" class="form-control" ztype="date" name="ih62q5uncccc" verify="Date&amp;&amp;NotNull">
@@ -274,7 +280,7 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[4].title}</label>
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[4].title}</label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control" ztype="time" name="jqrnfa1tyyt4" verify="Time">
                     <p class="help-block">${this.originFormData[4].info}</p>
@@ -293,11 +299,11 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[5].title}</label>
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[5].title}</label>
                   <div class="col-sm-8">
                     <div class="input-group">
-                      <span class="input-group-addon">^_^</span>
-                      <input type="text" class="form-control" name="jqrnfa1t7841" placeholder="placeholder" verify="">
+                      <span class="input-group-addon extra-word">^_^</span>
+                      <input type="text" class="form-control description" name="jqrnfa1t7841" placeholder="placeholder" verify="">
                     </div>
                     <p class="help-block">${this.originFormData[5].info}</p>
                   </div>
@@ -315,11 +321,11 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[6].title}</label>
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[6].title}</label>
                   <div class="col-sm-8">
                     <div class="input-group">
-                      <input type="text" class="form-control" name="jqrnfa1tw073" placeholder="placeholder" verify="">
-                      <span class="input-group-addon">^_^</span>
+                      <input type="text" class="form-control description" name="jqrnfa1tw073" placeholder="placeholder" verify="">
+                      <span class="input-group-addon extra-word">^_^</span>
                     </div>
                     <p class="help-block">${this.originFormData[6].info}</p>
                   </div>
@@ -337,7 +343,7 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[8].title}</label>
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[8].title}</label>
                   <div class="col-sm-8">
                     <div class="textarea">
                       <textarea rows="4" class="form-control" name="jqrnfa1taiuf" maxlength="140" verify="Length&lt;=140" placeholder="placeholder"></textarea>
@@ -358,9 +364,9 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[7].title}</label>
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[7].title}</label>
                   <div class="col-sm-8">
-                    <select class="form-control" name="jqrnfa1tjanj">
+                    <select class="form-control list8" name="jqrnfa1tjanj">
                       <option value="Enter">Enter</option>
                       <option value="Your">Your</option>
                       <option value="Options">Options</option>
@@ -381,7 +387,7 @@
             <div config="el">
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[9].title}</label>
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[9].title}</label>
                   <div class="col-sm-8">
                     <div class="form-group">
                       <div class="col-sm-4">
@@ -454,10 +460,10 @@
           <div>
             <div class="form-horizontal">
               <div class="form-group">
-                <label class="col-sm-3 control-label">${this.originFormData[10].title}</label>
+                <label class="col-sm-3 control-label form-tit">${this.originFormData[10].title}</label>
                 <div class="col-sm-8">
-                  <select class="form-control" multiple="multiple" name="jqrnfa1tuyir">
-                    <option value="Enter">Enter</option>
+                  <select class="form-control list8" multiple="multiple" name="jqrnfa1tuyir">
+                    <option value="Enter">Enter10</option>
                     <option value="Your">Your</option>
                     <option value="Options">Options</option>
                     <option value="Here!">Here!</option>
@@ -477,11 +483,11 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[11].title}</label>
-                  <div class="col-sm-8">
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[11].title}</label>
+                  <div class="col-sm-8 list11">
                     <div class="checkbox">
                       <label><input type="checkbox" name="jqrnfa1tqu4t" value="Option one">
-                        Option one
+                        Option one1
                       </label>
                     </div>
                     <div class="checkbox">
@@ -504,8 +510,8 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[12].title}</label>
-                  <div class="col-sm-8">
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[12].title}</label>
+                  <div class="col-sm-8 list11">
                     <div class="radio">
                       <label><input type="radio" value="Option one" name="jqrnfa1tfhis">
                         Option one
@@ -531,8 +537,8 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[13].title}</label>
-                  <div class="col-sm-8">
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[13].title}</label>
+                  <div class="col-sm-8 list11">
                     <label class="checkbox-inline">
                       <input type="checkbox" name="jqrnfa1t3l32" value="one">
                       one
@@ -561,8 +567,8 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[14].title}</label>
-                  <div class="col-sm-8">
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[14].title}</label>
+                  <div class="col-sm-8 list11">
                     <label class="radio-inline">
                       <input type="radio" value="one" name="jqrnfa1t16ho">
                       one
@@ -588,7 +594,7 @@
             <div config="el">
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[15].title}</label>
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[15].title}</label>
                   <div class="col-sm-8">
                     <ul class="star-rating" id="rating1">
                       <input type="hidden" name="ih62q5unffff" value="0">
@@ -616,7 +622,7 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[16].title}</label>
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[16].title}</label>
                   <div class="col-sm-8">
                     <input class="input-file" type="file" name="jqrnfa1tiku8">
                     <p class="help-block">${this.originFormData[16].info}</p>
@@ -636,7 +642,7 @@
             <div>
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">${this.originFormData[17].title}</label>
+                  <label class="col-sm-3 control-label form-tit">${this.originFormData[17].title}</label>
                   <div class="col-sm-8">
                     <button class="btn btn-primary">${this.originFormData[17].info}</button>
                   </div>
@@ -674,21 +680,117 @@
       // 2、点击单个form
       hoverclick(cur,event){
         let eledom   = event.target;
-        this.curIndex = eledom.parentNode.getAttribute('data-snipid');
-        //console.log('this.curIndex',this.curIndex);
+        if(eledom.parentNode.getAttribute('class')==='ui-draggable'){
+          this.curIndex = parseInt(eledom.parentNode.getAttribute('data-snipid'));
+          console.log('this.curIndex',this.curIndex);
+
+          // 双向数据绑定
+            // 标题
+          let oldValue =  eledom.parentNode.getElementsByClassName('form-tit')[0].innerHTML;
+          document.getElementById('right-form-tit1').value = oldValue;
+            //  填写帮助
+          if(this.curIndex===0||this.curIndex===1||this.curIndex===2||this.curIndex===3||this.curIndex===4||this.curIndex===5||this.curIndex===6||this.curIndex===7||this.curIndex===9||this.curIndex===15||this.curIndex===16){
+            let oldInfo = eledom.parentNode.getElementsByClassName('help-block')[0].innerHTML;
+            document.getElementById('right-form-info3').value = oldInfo;
+          }
+
+          if(this.curIndex ===1){
+            // 描述性文字
+            let description = eledom.parentNode.getElementsByClassName('description')[0].value|| 'placeholder';
+            document.getElementById('right-form-description1').value = description;
+          }
+          if(this.curIndex ===5 || this.curIndex ===6){
+            // 附加文字
+            let extra_word = eledom.parentNode.getElementsByClassName('extra-word')[0].innerHTML;
+            document.getElementById('extra-word4').value = extra_word;
+            // 描述性文字
+            let description = eledom.parentNode.getElementsByClassName('description')[0].value|| 'placeholder';
+            document.getElementById('right-form-description1').value = description;
+          }
+          if(this.curIndex ===8){
+            // 下拉单选列表--单选
+            let list8 = eledom.parentNode.getElementsByClassName('list8')[0];
+            let lis8Options = '';
+            for(let i = 0;i<list8.getElementsByTagName('option').length;i++){
+              lis8Options += list8.getElementsByTagName('option')[i].innerHTML + '\n'
+            }
+            document.getElementById('right-form-list8').innerHTML = lis8Options;
+          }
+          if(this.curIndex ===10){
+            // 下拉单选列表--单选
+            let list8 = eledom.parentNode.getElementsByClassName('list8')[0];
+            let lis8Options = '';
+            for(let i = 0;i<list8.getElementsByTagName('option').length;i++){
+              lis8Options += list8.getElementsByTagName('option')[i].innerHTML + '\n'
+            }
+            document.getElementById('right-form-list10').innerHTML = lis8Options;
+          }
+          // 单选、复选
+          if(this.curIndex ===11){
+            let list11 = eledom.parentNode.getElementsByClassName('list11')[0];
+            let lis11Options = '';
+            for(let i = 0;i<list11.getElementsByTagName('label').length;i++){
+              lis11Options += list11.getElementsByTagName('label')[i].innerText + '\n'
+            }
+            document.getElementById('right-form-list11').innerHTML = lis11Options;
+          }
+          // 单选、复选
+          if(this.curIndex ===12){
+            let list11 = eledom.parentNode.getElementsByClassName('list11')[0];
+            let lis11Options = '';
+            for(let i = 0;i<list11.getElementsByTagName('label').length;i++){
+              lis11Options += list11.getElementsByTagName('label')[i].innerText + '\n'
+            }
+            document.getElementById('right-form-list12').innerHTML = lis11Options;
+          }
+          // 单选、复选
+          if(this.curIndex ===13){
+            let list11 = eledom.parentNode.getElementsByClassName('list11')[0];
+            let lis11Options = '';
+            for(let i = 0;i<list11.getElementsByTagName('label').length;i++){
+              lis11Options += list11.getElementsByTagName('label')[i].innerText + '\n'
+            }
+            document.getElementById('right-form-list13').innerHTML = lis11Options;
+          }
+          // 单选、复选
+          if(this.curIndex ===14){
+            let list11 = eledom.parentNode.getElementsByClassName('list11')[0];
+            let lis11Options = '';
+            for(let i = 0;i<list11.getElementsByTagName('label').length;i++){
+              lis11Options += list11.getElementsByTagName('label')[i].innerText + '\n'
+            }
+            document.getElementById('right-form-list14').innerHTML = lis11Options;
+          }
+          // 按钮风格
+          if(this.curIndex ===17){
+            // 描述性文字
+            let btnstyle = eledom.parentNode.getElementsByClassName('btn')[0].innerHTML;
+            document.getElementById('btn-style').value = btnstyle;
+          }
+
+        }
+
         // 添加样式
         this.cur = cur;
         //console.log('event事件1',event);
         //console.log('cur的值',this.cur);
+
+
+
+        // 添加或删除
         this.operateForm(event);
+
       },
       // 3、操作form,添加或删除(采用事件委托)
       operateForm (e){
         //console.log('e事件2',e);
         let dom = e.target;
+        /*this.curIndex = parseInt(dom.parentNode.parentNode.parentNode.getAttribute('data-snipid'));*/
+
         // 3.1、添加form
         if(dom.getAttribute('class')==='icon-plus'){
           this.userFormEles.splice(this.cur,0,this.userFormEles[this.cur]);
+          // this.userFormEles[0].title='1111111111111111111';
           // console.log('添加'+this.cur)
           // 同时更新用户的form数据
           this.userFormData.splice(this.cur,0,this.userFormData[this.cur]);
@@ -708,6 +810,199 @@
         // 修改原始数据
         console.log()
       },
+      // 5、双向数据绑定1---标题
+      right_form_tit1(e){
+        let obj = {};
+        Object.defineProperty(obj,'text',{
+          get: function(){
+            return obj;
+          },
+          set:function (newValue) {
+            /*document.getElementById('right_form_tit1').value = newValue;*/
+            document.getElementsByClassName('ui-dragbox-outlined')[0].getElementsByClassName('form-tit')[0].innerHTML = newValue
+          }
+        });
+        obj.text = e.target.value;
+      },
+      // 6、双向数据绑定2---填写帮助
+      right_form_info3(e){
+        let obj = {};
+        Object.defineProperty(obj,'text',{
+          get: function(){
+            return obj;
+          },
+          set:function (newValue) {
+            document.getElementsByClassName('ui-dragbox-outlined')[0].getElementsByClassName('help-block')[0].innerHTML = newValue
+          }
+        });
+        obj.text = e.target.value;
+
+      },
+      // 7、双向数据绑定3---描述性文字
+      right_form_description2(e){
+        let obj = {};
+        Object.defineProperty(obj,'text',{
+          get: function(){
+            return obj;
+          },
+          set:function (newValue) {
+            document.getElementsByClassName('ui-dragbox-outlined')[0].getElementsByClassName('description')[0].value = newValue
+          }
+        });
+        obj.text = e.target.value;
+      },
+      // 8、双向数据绑定4---附加文字
+      right_extra_word4(e){
+        let obj = {};
+        Object.defineProperty(obj,'text',{
+          get: function(){
+            return obj;
+          },
+          set:function (newValue) {
+            document.getElementsByClassName('ui-dragbox-outlined')[0].getElementsByClassName('extra-word')[0].innerHTML = newValue
+          }
+        });
+        obj.text = e.target.value;
+      },
+      // 9、双向数据绑定4---下拉
+      right_form_list8(e){
+        let arr1 = '';
+        // 双向绑定option的数据
+        const data1 = {text:[]};
+        data1.text = arr1.split('\n').slice(0,length-1);
+        // console.log('data1----',data1);
+        const handler1 = {
+          set:function(target,prop,value){
+            target[prop] = value;
+            data1.text = value.split('\n');
+            let str ='';
+            for(let j = 0;j< data1.text.length-1;j++){
+              str +=`<option>${value.split('\n')[j]}</option>`;
+            }
+            // console.log('str-----',str);
+            document.getElementsByClassName('ui-dragbox-outlined')[0].getElementsByClassName('list8')[0].innerHTML = str;
+            return true;
+          }
+        };
+        const test1 = new Proxy(data1,handler1);
+        test1.text = e.target.value;
+      },
+      // 10、单选、多选
+      right_form_list11(e){
+        let arr1 = '';
+        // 双向绑定option的数据
+        const data1 = {text:[]};
+        data1.text = arr1.split('\n').slice(0,length-1);
+        // console.log('data1----',data1);
+        const handler1 = {
+          set:function(target,prop,value){
+            target[prop] = value;
+            data1.text = value.split('\n');
+            let str ='';
+            for(let j = 0;j< data1.text.length-1;j++){
+              str +=`<div class="checkbox"><label><input type="checkbox" name="jqrnfa1tqu4t">${value.split('\n')[j]}</label></div>`;
+            }
+            // console.log('str-----',str);
+            document.getElementsByClassName('ui-dragbox-outlined')[0].getElementsByClassName('list11')[0].innerHTML = str;
+            return true;
+          }
+        };
+        const test1 = new Proxy(data1,handler1);
+        test1.text = e.target.value;
+
+      },
+      // 11、单选、多选
+      right_form_list12(e){
+        let arr1 = '';
+        // 双向绑定option的数据
+        const data1 = {text:[]};
+        data1.text = arr1.split('\n').slice(0,length-1);
+        // console.log('data1----',data1);
+        const handler1 = {
+          set:function(target,prop,value){
+            target[prop] = value;
+            data1.text = value.split('\n');
+            let str ='';
+            for(let j = 0;j< data1.text.length-1;j++){
+              str +=`<div class="checkbox"><label><input type="radio" name="jqrnfa1tfhis">${value.split('\n')[j]}</label></div>`;
+            }
+            // console.log('str-----',str);
+            document.getElementsByClassName('ui-dragbox-outlined')[0].getElementsByClassName('list11')[0].innerHTML = str;
+            return true;
+          }
+        };
+        const test1 = new Proxy(data1,handler1);
+        test1.text = e.target.value;
+
+      },
+      // 12、单选、多选
+      right_form_list13(e){
+        let arr1 = '';
+        // 双向绑定option的数据
+        const data1 = {text:[]};
+        data1.text = arr1.split('\n').slice(0,length-1);
+        // console.log('data1----',data1);
+        const handler1 = {
+          set:function(target,prop,value){
+            target[prop] = value;
+            data1.text = value.split('\n');
+            let str ='';
+            for(let j = 0;j< data1.text.length-1;j++){
+              str +=`<label class="checkbox-inline"><input type="checkbox" name="jqrnfa1t3l32">${value.split('\n')[j]}</label>`;
+            }
+            // console.log('str-----',str);
+            document.getElementsByClassName('ui-dragbox-outlined')[0].getElementsByClassName('list11')[0].innerHTML = str;
+            return true;
+          }
+        };
+        const test1 = new Proxy(data1,handler1);
+        test1.text = e.target.value;
+
+      },
+      // 13、单选、多选
+      right_form_list14(e){
+        let arr1 = '';
+        // 双向绑定option的数据
+        const data1 = {text:[]};
+        data1.text = arr1.split('\n').slice(0,length-1);
+        // console.log('data1----',data1);
+        const handler1 = {
+          set:function(target,prop,value){
+            target[prop] = value;
+            data1.text = value.split('\n');
+            let str ='';
+            for(let j = 0;j< data1.text.length-1;j++){
+              str +=`<label class="radio-inline"><input type="radio" name="jqrnfa1t16ho">${value.split('\n')[j]}</label>`;
+            }
+            // console.log('str-----',str);
+            document.getElementsByClassName('ui-dragbox-outlined')[0].getElementsByClassName('list11')[0].innerHTML = str;
+            return true;
+          }
+        };
+        const test1 = new Proxy(data1,handler1);
+        test1.text = e.target.value;
+
+      },
+      // 14、按钮文字
+      btn_style(e){
+        let obj = {};
+        Object.defineProperty(obj,'text',{
+          get: function(){
+            return obj;
+          },
+          set:function (newValue) {
+            document.getElementsByClassName('ui-dragbox-outlined')[0].getElementsByClassName('btn')[0].innerHTML = newValue
+          }
+        });
+        obj.text = e.target.value;
+      },
+      // 15、修改按钮的背景颜色
+      change_btn_style(e){
+        let style =e.target.value.toLowerCase();
+        document.getElementsByClassName('ui-dragbox-outlined')[0].getElementsByClassName('btn')[0].setAttribute('class',style+' btn');
+
+      },
+
       // last、收起右面板
       pullAwayRight(){
         this.isPullAway = !this.isPullAway;
